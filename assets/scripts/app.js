@@ -17,4 +17,6 @@ $(() => {
   $('#box7').on('click', events.playBox7)
   $('#box8').on('click', events.playBox8)
   $('#box9').on('click', events.playBox9)
+  // user sign up
+  $('#sign-up').on('submit', events.onSignUp)
 })

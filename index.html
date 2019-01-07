@@ -14,10 +14,18 @@
     <body>
       <h1>Tic Tac Toe</h1>
       <div class="container">
+        <h3 id='user-message'></h3>
+        <h2>User Sign Up</h2>
+        <form id="sign-up">
+          <input name="credentials[email]" type="text" placeholder="Email">
+          <input name="credentials[password]" type="password" placeholder="Password">
+          <input name="credentials[password_confirmation]" type="password" placeholder="Confirm Password">
+          <input class="submit" type="submit" value="Submit">
+        </form>
 
   <div class="row">
-    <div id="box1" class="col-4 box"></div>
-    <div id="box2" class="col-4 box"></div>
+    <div data-id="0" id="box1" class="col-4 box"></div>
+    <div data-id="1" id="box2" class="col-4 box"></div>
     <div id="box3" class="col-4 box"></div>
   </div>
   <div class="row">

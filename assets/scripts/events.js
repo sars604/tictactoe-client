@@ -1,6 +1,17 @@
-// const api = require('./api')
-// const ui = require('./ui')
-// const store = require('./store')
+const api = require('./api')
+const getFormFields = require('../../lib/get-form-fields.js')
+const ui = require('./ui')
+
+// User sign up
+const onSignUp = (event) => {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+
+  api.signUp(formData)
+    .then(ui.onSignUpSuccess)
+    .catch(ui.onSignUpFailure)
+  $('form').trigger('reset')
+}
 
 // array representing the moves in the game
 const playerMoves = [null, null, null, null, null, null, null, null, null]
@@ -131,7 +142,20 @@ const playBox9 = function () {
   }
 }
 
+const gameOver = function () {
+  for (let i = 0; i < playerMoves.length; i++) {
+    let result = false
+    if (playerMoves[i] !== null) {
+      result = true
+    }
+    if (result === true) {
+      alert('game over')
+    }
+  }
+}
+
 module.exports = {
+  onSignUp,
   playBox1,
   playBox2,
   playBox3,
@@ -140,5 +164,6 @@ module.exports = {
   playBox6,
   playBox7,
   playBox8,
-  playBox9
+  playBox9,
+  gameOver
 }
