@@ -33,6 +33,17 @@ const onSignOut = (event) => {
   $('form').trigger('reset')
 }
 
+// User Change password
+const onChangePassword = (event) => {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+
+  api.changePassword(formData)
+    .then(ui.onChangePasswordSuccess)
+    .catch(ui.onChangePasswordFailure)
+  $('form').trigger('reset')
+}
+
 // array representing the moves in the game
 const playerMoves = [null, null, null, null, null, null, null, null, null]
 
@@ -178,6 +189,7 @@ module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
+  onChangePassword,
   playBox1,
   playBox2,
   playBox3,

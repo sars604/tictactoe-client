@@ -23,4 +23,6 @@ $(() => {
   $('#sign-in').on('submit', events.onSignIn)
   // user sign Out
   $('#sign-out').on('click', events.onSignOut)
+  // user change password
+  $('#change-password').on('submit', events.onChangePassword)
 })
