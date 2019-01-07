@@ -7,7 +7,7 @@ const events = require('./events')
 // require('./example')
 
 $(() => {
-  // click on box and add x or o
+  // $('#game-board').on('click', events.playBox)
   $('#box0').on('click', events.playBox)
   $('#box1').on('click', events.playBox)
   $('#box2').on('click', events.playBox)
@@ -25,4 +25,10 @@ $(() => {
   $('#sign-out').on('click', events.onSignOut)
   // user change password
   $('#change-password').on('submit', events.onChangePassword)
+  // get index of games
+  $('#games-index').on('click', events.onGetGames)
+  // create a new game
+  $('#create-game').on('click', events.onCreateGame)
+  // show a game
+  $('#show-game').on('submit', events.onGetGame)
 })

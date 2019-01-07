@@ -44,6 +44,57 @@ const onChangePassword = (event) => {
   $('form').trigger('reset')
 }
 
+// Get Index of Games
+const onGetGames = function () {
+  // make API call for index of books
+  api.index()
+  // when API call is successful
+    .then(ui.onGetGamesSuccess)
+  // when API call fails
+    .catch(ui.onGetGamesFailure)
+}
+
+// Create a Game
+const onCreateGame = function (event) {
+  event.preventDefault()
+  // const data = getFormFields(event.target)
+  api.create()
+  // when API call is successful
+    .then(ui.onCreateGameSuccess)
+  // when API call fails
+    .catch(ui.onCreateGameFailure)
+}
+
+// Show a Game
+const onGetGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  const id = data.game.id
+  console.log(data.game.id)
+  // make API call for index of books
+  api.show(id)
+  // when API call is successful
+    .then(ui.onGetGameSuccess)
+  // when API call fails
+    .catch(ui.onGetGameFailure)
+}
+
+const onUpdateGame = (box, currentMove, over) => {
+  const data =
+    {
+      'game': {
+        'cell': {
+          'index': box,
+          'value': currentMove
+        },
+        'over': over
+      }
+    }
+  api.updateGame(data)
+    .then(ui.onUpdateGameSuccess)
+    .catch(ui.onUpdateGameFailure)
+}
+
 // array representing the moves in the game
 const playerMoves = [null, null, null, null, null, null, null, null, null]
 
@@ -53,8 +104,11 @@ let lastMove = null
 // players
 const player1 = 'X'
 const player2 = 'O'
+let currentMove = null
 let over = false
-// game winning logic
+
+
+// game winning logic for X
 const xWins = function () {
   if ((playerMoves[0] === 'X' && playerMoves[1] === 'X' && playerMoves[2] === 'X') ||
 (playerMoves[0] === 'X' && playerMoves[3] === 'X' && playerMoves[6] === 'X') ||
@@ -69,36 +123,8 @@ const xWins = function () {
     over = true
   }
 }
-// if (playerMoves[0] === 'X' && playerMoves[3] === 'X' && playerMoves[6] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[0] === 'X' && playerMoves[4] === 'X' && playerMoves[8] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[1] === 'X' && playerMoves[4] === 'X' && playerMoves[7] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[2] === 'X' && playerMoves[4] === 'X' && playerMoves[6] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[2] === 'X' && playerMoves[5] === 'X' && playerMoves[8] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[3] === 'X' && playerMoves[4] === 'X' && playerMoves[5] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   } if (playerMoves[6] === 'X' && playerMoves[7] === 'X' && playerMoves[8] === 'X') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, X Wins!`)
-//     over = true
-//   }
 
+// game winning logic for O
 const oWins = function () {
   if ((playerMoves[0] === 'O' && playerMoves[1] === 'O' && playerMoves[2] === 'O') ||
 (playerMoves[0] === 'O' && playerMoves[3] === 'O' && playerMoves[6] === 'O') ||
@@ -113,53 +139,24 @@ const oWins = function () {
     over = true
   }
 }
-//  if (playerMoves[0] === 'O' && playerMoves[3] === 'O' && playerMoves[6] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[0] === 'O' && playerMoves[4] === 'O' && playerMoves[8] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[1] === 'O' && playerMoves[4] === 'O' && playerMoves[7] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[2] === 'O' && playerMoves[4] === 'O' && playerMoves[6] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[2] === 'O' && playerMoves[5] === 'O' && playerMoves[8] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[3] === 'O' && playerMoves[4] === 'O' && playerMoves[5] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   } if (playerMoves[6] === 'O' && playerMoves[7] === 'O' && playerMoves[8] === 'O') {
-//     $('#game-board .row .box').off()
-//     $('#user-message').text(`Game Over, O Wins!`)
-//     over = true
-//   }
-// }
 
 // printing either X or O on click
 const playBox = function () {
   const box = event.target.id[3]
-  // const boxNum = box.charAt(3)
-  // for (let i = 0; i < playerMoves.length; i++) {
-  // if ($('#box' + (playerMoves.indexOf(playerMoves[i]) + 1)).html() === '') {
   if ($(box).html() === undefined) {
     if (lastMove === player1) {
       $(event.target).text(player2)
       playerMoves[box] = player2
-      console.log('player2 test')
       lastMove = player2
+      currentMove = player2
+      onUpdateGame(box, currentMove, over)
+      console.log(playerMoves[box])
     } else {
       $(event.target).text(player1)
       playerMoves[box] = player1
       lastMove = player1
+      currentMove = player1
+      onUpdateGame(box, currentMove, over)
     }
   }
   xWins()
@@ -176,244 +173,6 @@ const playBox = function () {
   preventDouble()
   console.log(playerMoves)
 }
-// const playBox1 = function () {
-//   if ($('#box1').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[0] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[0] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[0] !== null) {
-//       $('#box1').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-
-// const playBox2 = function () {
-//   if ($('#box2').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[1] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[1] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[1] !== null) {
-//       $('#box2').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-//
-// const playBox3 = function () {
-//   if ($('#box3').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[2] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[2] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[2] !== null) {
-//       $('#box3').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-//
-// const playBox4 = function () {
-//   if ($('#box4').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[3] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[3] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[3] !== null) {
-//       $('#box4').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-// const playBox5 = function () {
-//   if ($('#box5').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[4] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[4] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[4] !== null) {
-//       $('#box5').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-// const playBox6 = function () {
-//   if ($('#box6').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[5] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[5] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[5] !== null) {
-//       $('#box6').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-// const playBox7 = function () {
-//   if ($('#box7').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[6] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[6] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[6] !== null) {
-//       $('#box7').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-// const playBox8 = function () {
-//   if ($('#box8').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[7] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[7] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[7] !== null) {
-//       $('#box8').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-// const playBox9 = function () {
-//   if ($('#box9').html() === '') {
-//     if (lastMove === player1) {
-//       $(event.target).text(player2)
-//       playerMoves[8] = player2
-//       lastMove = player2
-//     } else {
-//       $(event.target).text(player1)
-//       playerMoves[8] = player1
-//       lastMove = player1
-//     }
-//   }
-//   xWins()
-//   oWins()
-//   const preventDouble = function (event) {
-//     if (playerMoves[8] !== null) {
-//       $('#box9').off()
-//     }
-//   }
-//   if (playerMoves.every(valueExists)) {
-//     console.log('test to make sure this works')
-//     gameDraw()
-//   }
-//   preventDouble()
-//   console.log(playerMoves)
-// }
-
 const gameDraw = function () {
   if (over === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)
@@ -433,15 +192,11 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePassword,
+  onGetGames,
+  onCreateGame,
+  onGetGame,
+  onUpdateGame,
   playBox,
-  // playBox2,
-  // playBox3,
-  // playBox4,
-  // playBox5,
-  // playBox6,
-  // playBox7,
-  // playBox8,
-  // playBox9,
   xWins,
   oWins,
   gameDraw

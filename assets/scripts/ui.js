@@ -39,6 +39,59 @@ const onChangePasswordFailure = () => {
   $('#user-message').css('color', 'red')
 }
 
+const onGetGamesSuccess = function (response) {
+  const games = response.games
+  // clear content to make room for book list
+  $('#user-message').html('Here are all your games')
+  games.forEach(function (games) {
+    const gamesHTML = (`
+      <h4>${games.id}</h4>
+      <p>${games.cells}</p>
+      <p>${games.over}</p>
+      `)
+    $('#user-message').append(gamesHTML)
+  })
+}
+
+const onGetGamesFailure = function () {
+  $('#user-message').html('Can not grab list of games, please try again')
+}
+
+const onCreateGameSuccess = function (response) {
+  store.game = response.game
+  $('#user-message').html('Game Created, Have Fun!')
+  // const gameHTML = (`
+  //   <h4>${book.title}</h4>
+  //   <p>${book.author}</p>
+  //   <p>${book.id}</p>
+  //   `)
+  // $('#user-message').append(bookHTML)
+  // $('#create-game').val('')
+}
+
+const onCreateGameFailure = function () {
+  $('#user-message').html('Request failed, please try again')
+  // $('#book-create input').val('')
+}
+
+const onGetGameSuccess = function () {
+  // const game = response.game
+  // clear content to make room for book list
+  $('#user-message').html('Here is the game you requested')
+  // const bookHTML = (`
+  //   <h4>${book.title}</h4>
+  //   <p>${book.author}</p>
+  //   <p>${book.id}</p>
+  //   `)
+  // $('#content').append(bookHTML)
+  // $('#book-show input').val('')
+}
+
+const onGetGameFailure = function () {
+  $('#content').html('Request failed, please try again')
+  // $('#book-show input').val('')
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -47,5 +100,11 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onChangePasswordSuccess,
-  onChangePasswordFailure
+  onChangePasswordFailure,
+  onGetGamesSuccess,
+  onGetGamesFailure,
+  onCreateGameSuccess,
+  onCreateGameFailure,
+  onGetGameSuccess,
+  onGetGameFailure
 }
