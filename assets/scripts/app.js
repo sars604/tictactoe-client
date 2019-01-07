@@ -8,15 +8,15 @@ const events = require('./events')
 
 $(() => {
   // click on box and add x or o
-  $('#box1').on('click', events.playBox1)
-  $('#box2').on('click', events.playBox2)
-  $('#box3').on('click', events.playBox3)
-  $('#box4').on('click', events.playBox4)
-  $('#box5').on('click', events.playBox5)
-  $('#box6').on('click', events.playBox6)
-  $('#box7').on('click', events.playBox7)
-  $('#box8').on('click', events.playBox8)
-  $('#box9').on('click', events.playBox9)
+  $('#box0').on('click', events.playBox)
+  $('#box1').on('click', events.playBox)
+  $('#box2').on('click', events.playBox)
+  $('#box3').on('click', events.playBox)
+  $('#box4').on('click', events.playBox)
+  $('#box5').on('click', events.playBox)
+  $('#box6').on('click', events.playBox)
+  $('#box7').on('click', events.playBox)
+  $('#box8').on('click', events.playBox)
   // user sign up
   $('#sign-up').on('submit', events.onSignUp)
   // user sign in
