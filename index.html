@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -29,20 +29,21 @@
         <input type="text" name="credentials[password]" placeholder="Password">
           <input class="submit" type="submit" value="Submit">
       </form>
-      <h3>User Sign Out</h3>
+
       <h3>Change Password</h3>
   <form id="change-password">
     <input type="text" name="passwords[old]" placeholder="Old Password">
     <input type="text" name="passwords[new]" placeholder="New Password">
     <input class="submit" type="submit" value="Submit">
   </form>
+  <h3>User Sign Out</h3>
       <form id="sign-out">
       <button class="submit" type="button">Sign Out</button>
     </form>
-
+<div id="game-board">
   <div class="row">
-    <div data-id="0" id="box1" class="col-4 box"></div>
-    <div data-id="1" id="box2" class="col-4 box"></div>
+    <div id="box1" class="col-4 box"></div>
+    <div id="box2" class="col-4 box"></div>
     <div id="box3" class="col-4 box"></div>
   </div>
   <div class="row">
@@ -55,6 +56,7 @@
     <div id="box8" class="col-4 box"></div>
     <div id="box9" class="col-4 box"></div>
   </div>
+</div>
 </div>
     </body>
 </html>
