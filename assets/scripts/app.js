@@ -19,4 +19,6 @@ $(() => {
   $('#box9').on('click', events.playBox9)
   // user sign up
   $('#sign-up').on('submit', events.onSignUp)
+  // user sign in
+  $('#sign-in').on('submit', events.onSignIn)
 })

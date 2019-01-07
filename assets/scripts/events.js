@@ -13,6 +13,17 @@ const onSignUp = (event) => {
   $('form').trigger('reset')
 }
 
+// User sign in
+const onSignIn = (event) => {
+  event.preventDefault()
+  const formData = getFormFields(event.target)
+
+  api.signIn(formData)
+    .then(ui.onSignInSuccess)
+    .catch(ui.onSignInFailure)
+  $('form').trigger('reset')
+}
+
 // array representing the moves in the game
 const playerMoves = [null, null, null, null, null, null, null, null, null]
 
@@ -156,6 +167,7 @@ const gameOver = function () {
 
 module.exports = {
   onSignUp,
+  onSignIn,
   playBox1,
   playBox2,
   playBox3,

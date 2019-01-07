@@ -1,5 +1,5 @@
 'use strict'
-// const store = require('../store')
+const store = require('./store')
 
 const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
@@ -10,7 +10,19 @@ const onSignUpFailure = () => {
   $('#user-message').css('color', 'red')
 }
 
+const onSignInSuccess = (responseData) => {
+  $('#user-message').text(`Successfully signed in as ${responseData.user.email}!`)
+  $('#user-message').css('color', 'green')
+  store.user = responseData.user
+}
+const onSignInFailure = () => {
+  $('#user-message').text('Error on sign in, try again!')
+  $('#user-message').css('color', 'red')
+}
+
 module.exports = {
   onSignUpSuccess,
-  onSignUpFailure
+  onSignUpFailure,
+  onSignInSuccess,
+  onSignInFailure
 }
