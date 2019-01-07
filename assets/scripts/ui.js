@@ -20,9 +20,21 @@ const onSignInFailure = () => {
   $('#user-message').css('color', 'red')
 }
 
+const onSignOutSuccess = () => {
+  $('#user-message').text(`Successfully signed out!`)
+  $('#user-message').css('color', 'green')
+  store.user = null
+}
+const onSignOutFailure = () => {
+  $('#user-message').text('Error on signing out, try again!')
+  $('#user-message').css('color', 'red')
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
   onSignInSuccess,
-  onSignInFailure
+  onSignInFailure,
+  onSignOutSuccess,
+  onSignOutFailure
 }

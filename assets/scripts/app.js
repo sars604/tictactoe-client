@@ -21,4 +21,6 @@ $(() => {
   $('#sign-up').on('submit', events.onSignUp)
   // user sign in
   $('#sign-in').on('submit', events.onSignIn)
+  // user sign Out
+  $('#sign-out').on('click', events.onSignOut)
 })
