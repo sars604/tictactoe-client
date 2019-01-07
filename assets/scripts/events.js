@@ -53,77 +53,77 @@ let lastMove = null
 // players
 const player1 = 'X'
 const player2 = 'O'
-
+let over = false
 // game winning logic
 const xWins = function () {
   if (playerMoves[0] === 'X' && playerMoves[1] === 'X' && playerMoves[2] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[0] === 'X' && playerMoves[3] === 'X' && playerMoves[6] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[0] === 'X' && playerMoves[4] === 'X' && playerMoves[8] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[1] === 'X' && playerMoves[4] === 'X' && playerMoves[7] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[2] === 'X' && playerMoves[4] === 'X' && playerMoves[6] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[2] === 'X' && playerMoves[5] === 'X' && playerMoves[8] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[3] === 'X' && playerMoves[4] === 'X' && playerMoves[5] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   } if (playerMoves[6] === 'X' && playerMoves[7] === 'X' && playerMoves[8] === 'X') {
-    console.log('Game Over, X wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, X Wins!`)
+    over = true
   }
 }
 
 const oWins = function () {
   if (playerMoves[0] === 'O' && playerMoves[1] === 'O' && playerMoves[2] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[0] === 'O' && playerMoves[3] === 'O' && playerMoves[6] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[0] === 'O' && playerMoves[4] === 'O' && playerMoves[8] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[1] === 'O' && playerMoves[4] === 'O' && playerMoves[7] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[2] === 'O' && playerMoves[4] === 'O' && playerMoves[6] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[2] === 'O' && playerMoves[5] === 'O' && playerMoves[8] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[3] === 'O' && playerMoves[4] === 'O' && playerMoves[5] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   } if (playerMoves[6] === 'O' && playerMoves[7] === 'O' && playerMoves[8] === 'O') {
-    console.log('Game Over, O wins!')
     $('#game-board .row .box').off()
-    return true
+    $('#user-message').text(`Game Over, O Wins!`)
+    over = true
   }
 }
 
@@ -146,6 +146,10 @@ const playBox1 = function () {
     if (playerMoves[0] !== null) {
       $('#box1').off()
     }
+  }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
   }
   preventDouble()
   console.log(playerMoves)
@@ -170,6 +174,10 @@ const playBox2 = function () {
       $('#box2').off()
     }
   }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
+  }
   preventDouble()
   console.log(playerMoves)
 }
@@ -192,6 +200,10 @@ const playBox3 = function () {
     if (playerMoves[2] !== null) {
       $('#box3').off()
     }
+  }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
   }
   preventDouble()
   console.log(playerMoves)
@@ -216,6 +228,10 @@ const playBox4 = function () {
       $('#box4').off()
     }
   }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
+  }
   preventDouble()
   console.log(playerMoves)
 }
@@ -237,6 +253,10 @@ const playBox5 = function () {
     if (playerMoves[4] !== null) {
       $('#box5').off()
     }
+  }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
   }
   preventDouble()
   console.log(playerMoves)
@@ -260,6 +280,10 @@ const playBox6 = function () {
       $('#box6').off()
     }
   }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
+  }
   preventDouble()
   console.log(playerMoves)
 }
@@ -281,6 +305,10 @@ const playBox7 = function () {
     if (playerMoves[6] !== null) {
       $('#box7').off()
     }
+  }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
   }
   preventDouble()
   console.log(playerMoves)
@@ -304,6 +332,10 @@ const playBox8 = function () {
       $('#box8').off()
     }
   }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
+  }
   preventDouble()
   console.log(playerMoves)
 }
@@ -326,8 +358,26 @@ const playBox9 = function () {
       $('#box9').off()
     }
   }
+  if (playerMoves.every(valueExists)) {
+    console.log('test to make sure this works')
+    gameDraw()
+  }
   preventDouble()
   console.log(playerMoves)
+}
+
+const gameDraw = function () {
+  if (over === false) {
+    $('#user-message').text(`Game Over, it's a Draw!`)
+  }
+}
+
+function valueExists (currentValue) {
+  if (currentValue) {
+    return true
+  } else {
+    return false
+  }
 }
 
 module.exports = {
@@ -345,5 +395,6 @@ module.exports = {
   playBox8,
   playBox9,
   xWins,
-  oWins
+  oWins,
+  gameDraw
 }
