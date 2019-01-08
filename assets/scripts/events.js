@@ -54,7 +54,7 @@ const onChangePassword = (event) => {
   api.changePassword(formData)
     .then(ui.onChangePasswordSuccess)
     .catch(ui.onChangePasswordFailure)
-  $('#change-password').trigger('reset')
+  $('#change-password-form').trigger('reset')
 }
 
 // Get Index of Games

@@ -50,6 +50,7 @@ const onSignOutFailure = () => {
 }
 
 const onChangePasswordSuccess = () => {
+  $('#passwordModalCenter').modal('toggle')
   $('#user-message').text(`Successfully changed password!`)
   $('#user-message').css('color', 'green')
 }

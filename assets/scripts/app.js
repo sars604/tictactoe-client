@@ -20,7 +20,7 @@ $(() => {
   // user sign Out
   $('#sign-out').on('click', events.onSignOut)
   // user change password
-  $('#change-password').on('submit', events.onChangePassword)
+  $('#change-password-form').on('submit', events.onChangePassword)
   // get index of games
   $('#games-index').on('click', events.onGetGames)
   // create a new game
