@@ -4,12 +4,8 @@ const store = require('./store')
 const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
-  $('#game-board').hide()
-  $('#games-index').hide()
-  $('#create-game').hide()
-  $('#change-password').hide()
+  $('#game-board, #games-index, #create-game, #change-password, #sign-up').hide()
   $('#sign-in').show()
-  $('#sign-up').hide()
 }
 const onSignUpFailure = () => {
   $('#user-message').text('Error on signup, please try again!')
@@ -20,12 +16,8 @@ const onSignInSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed in as ${responseData.user.email}! Now, Start a Game!`)
   $('#user-message').css('color', 'green')
   store.user = responseData.user
-  $('#game-board').hide()
-  $('#games-index').show()
-  $('#create-game').show()
-  $('#change-password').show()
-  $('#sign-in').hide()
-  $('#sign-up').hide()
+  $('#game-board, #sign-in, #sign-up').hide()
+  $('#games-index, #change-password, #create-game').show()
 }
 
 const onSignInFailure = () => {
@@ -37,12 +29,8 @@ const onSignOutSuccess = () => {
   $('#user-message').text(`Successfully signed out!`)
   $('#user-message').css('color', 'green')
   store.user = null
-  $('#game-board').hide()
-  $('#games-index').hide()
-  $('#create-game').hide()
-  $('#change-password').hide()
-  $('#sign-in').show()
-  $('#sign-up').show()
+  $('#game-board, #games-index, #create-game, #change-password').hide()
+  $('#sign-in, #sign-up').show()
 }
 const onSignOutFailure = () => {
   $('#user-message').text('Error on signing out, try again!')
@@ -78,16 +66,6 @@ const onCreateGameSuccess = function (response) {
 const onCreateGameFailure = function () {
   $('#user-message').html('Request failed, please try again')
 }
-
-// const onGetGameSuccess = function () {
-//   $('#user-message').html('Here is the game you requested')
-//
-// }
-//
-// const onGetGameFailure = function () {
-//   $('#content').html('Request failed, please try again')
-//   // $('#book-show input').val('')
-// }
 
 module.exports = {
   onSignUpSuccess,
