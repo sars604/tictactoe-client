@@ -1,6 +1,7 @@
 const api = require('./api')
 const getFormFields = require('../../lib/get-form-fields.js')
 const ui = require('./ui')
+const store = require('./store')
 
 // User sign up
 const onSignUp = (event) => {
@@ -41,7 +42,7 @@ const onChangePassword = (event) => {
   api.changePassword(formData)
     .then(ui.onChangePasswordSuccess)
     .catch(ui.onChangePasswordFailure)
-  $('form').trigger('reset')
+  $('#change-password').trigger('reset')
 }
 
 // Get Index of Games
@@ -81,15 +82,15 @@ const onGetGame = function (event) {
 
 const onUpdateGame = (box, currentMove, over) => {
   const data =
-    {
-      'game': {
-        'cell': {
-          'index': box,
-          'value': currentMove
-        },
-        'over': over
-      }
+  {
+    'game': {
+      'cell': {
+        'index': box,
+        'value': currentMove
+      },
+      'over': over
     }
+  }
   api.updateGame(data)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
@@ -106,7 +107,6 @@ const player1 = 'X'
 const player2 = 'O'
 let currentMove = null
 let over = false
-
 
 // game winning logic for X
 const xWins = function () {
@@ -150,7 +150,6 @@ const playBox = function () {
       lastMove = player2
       currentMove = player2
       onUpdateGame(box, currentMove, over)
-      console.log(playerMoves[box])
     } else {
       $(event.target).text(player1)
       playerMoves[box] = player1
@@ -167,7 +166,6 @@ const playBox = function () {
     }
   }
   if (playerMoves.every(valueExists)) {
-    console.log('test to make sure this works')
     gameDraw()
   }
   preventDouble()
@@ -176,6 +174,7 @@ const playBox = function () {
 const gameDraw = function () {
   if (over === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)
+    return over === true
   }
 }
 

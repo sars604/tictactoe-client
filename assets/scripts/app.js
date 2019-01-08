@@ -5,6 +5,10 @@ const events = require('./events')
 
 // use require without a reference to ensure a file is bundled
 // require('./example')
+$('#game-board').hide()
+$('#games-index').hide()
+$('#create-game').hide()
+$('#change-password').hide()
 
 $(() => {
   // $('#game-board').on('click', events.playBox)
@@ -29,6 +33,4 @@ $(() => {
   $('#games-index').on('click', events.onGetGames)
   // create a new game
   $('#create-game').on('click', events.onCreateGame)
-  // show a game
-  $('#show-game').on('submit', events.onGetGame)
 })

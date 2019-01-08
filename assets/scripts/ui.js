@@ -4,9 +4,15 @@ const store = require('./store')
 const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
+  $('#game-board').show()
+  $('#games-index').show()
+  $('#create-game').show()
+  $('#change-password').show()
+  $('#sign-in').hide()
+  $('#sign-up').hide()
 }
 const onSignUpFailure = () => {
-  $('#user-message').text('Error on signup!')
+  $('#user-message').text('Error on signup, please try again!')
   $('#user-message').css('color', 'red')
 }
 
@@ -14,9 +20,16 @@ const onSignInSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed in as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
   store.user = responseData.user
+  $('#game-board').show()
+  $('#games-index').show()
+  $('#create-game').show()
+  $('#change-password').show()
+  $('#sign-in').hide()
+  $('#sign-up').hide()
 }
+
 const onSignInFailure = () => {
-  $('#user-message').text('Error on sign in, try again!')
+  $('#user-message').text('Error on sign in, please try again!')
   $('#user-message').css('color', 'red')
 }
 
@@ -24,6 +37,12 @@ const onSignOutSuccess = () => {
   $('#user-message').text(`Successfully signed out!`)
   $('#user-message').css('color', 'green')
   store.user = null
+  $('#game-board').hide()
+  $('#games-index').hide()
+  $('#create-game').hide()
+  $('#change-password').hide()
+  $('#sign-in').show()
+  $('#sign-up').show()
 }
 const onSignOutFailure = () => {
   $('#user-message').text('Error on signing out, try again!')
@@ -60,37 +79,21 @@ const onGetGamesFailure = function () {
 const onCreateGameSuccess = function (response) {
   store.game = response.game
   $('#user-message').html('Game Created, Have Fun!')
-  // const gameHTML = (`
-  //   <h4>${book.title}</h4>
-  //   <p>${book.author}</p>
-  //   <p>${book.id}</p>
-  //   `)
-  // $('#user-message').append(bookHTML)
-  // $('#create-game').val('')
 }
 
 const onCreateGameFailure = function () {
   $('#user-message').html('Request failed, please try again')
-  // $('#book-create input').val('')
 }
 
-const onGetGameSuccess = function () {
-  // const game = response.game
-  // clear content to make room for book list
-  $('#user-message').html('Here is the game you requested')
-  // const bookHTML = (`
-  //   <h4>${book.title}</h4>
-  //   <p>${book.author}</p>
-  //   <p>${book.id}</p>
-  //   `)
-  // $('#content').append(bookHTML)
-  // $('#book-show input').val('')
-}
-
-const onGetGameFailure = function () {
-  $('#content').html('Request failed, please try again')
-  // $('#book-show input').val('')
-}
+// const onGetGameSuccess = function () {
+//   $('#user-message').html('Here is the game you requested')
+//
+// }
+//
+// const onGetGameFailure = function () {
+//   $('#content').html('Request failed, please try again')
+//   // $('#book-show input').val('')
+// }
 
 module.exports = {
   onSignUpSuccess,
@@ -104,7 +107,5 @@ module.exports = {
   onGetGamesSuccess,
   onGetGamesFailure,
   onCreateGameSuccess,
-  onCreateGameFailure,
-  onGetGameSuccess,
-  onGetGameFailure
+  onCreateGameFailure
 }
