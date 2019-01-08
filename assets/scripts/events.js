@@ -152,37 +152,39 @@ const oWins = function () {
 // printing either X or O on click
 const playBox = function () {
   if (gameWinner === false) {
-  const boxNum = event.target.id[3]
-  if ($(event.target).text() === '') {
-    if (lastMove === player1) {
-      $(event.target).text(player2)
-      playerMoves[boxNum] = player2
-      lastMove = player2
-      currentMove = player2
-      onUpdateGame(boxNum, currentMove, over)
-    } else {
-      $(event.target).text(player1)
-      playerMoves[boxNum] = player1
-      lastMove = player1
-      currentMove = player1
-      onUpdateGame(boxNum, currentMove, over)
+    const boxNum = event.target.id[3]
+    if ($(event.target).text() === '') {
+      if (lastMove === player1) {
+        $(event.target).text(player2)
+        playerMoves[boxNum] = player2
+        lastMove = player2
+        currentMove = player2
+        $('#user-message').text(`Player X, it's your turn!`)
+        onUpdateGame(boxNum, currentMove, over)
+      } else {
+        $(event.target).text(player1)
+        playerMoves[boxNum] = player1
+        lastMove = player1
+        currentMove = player1
+        $('#user-message').text(`Player O, it's your turn!`)
+        onUpdateGame(boxNum, currentMove, over)
+      }
     }
-  }
-  xWins()
-  oWins()
-  const preventDouble = function (event) {
-    if (playerMoves[boxNum] !== '') {
+    xWins()
+    oWins()
+    const preventDouble = function (event) {
+      if (playerMoves[boxNum] !== '') {
+      }
     }
+    if (playerMoves.every(valueExists)) {
+      gameDraw()
+    }
+    preventDouble()
+    console.log(playerMoves)
   }
-  if (playerMoves.every(valueExists)) {
-    gameDraw()
-  }
-  preventDouble()
-  console.log(playerMoves)
-}
 }
 const gameDraw = function () {
-  if (over === false) {
+  if (gameWinner === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)
     api.gameOver(store.game.id)
   }
