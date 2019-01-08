@@ -97,7 +97,7 @@ const onUpdateGame = (box, currentMove, over) => {
 }
 
 // array representing the moves in the game
-const playerMoves = [null, null, null, null, null, null, null, null, null]
+const playerMoves = ['', '', '', '', '', '', '', '', '']
 
 // variable that represents the last move made by either x or o
 let lastMove = null
@@ -161,8 +161,8 @@ const playBox = function () {
   xWins()
   oWins()
   const preventDouble = function (event) {
-    if (playerMoves[box] !== null) {
-      $(box).off()
+    if (playerMoves[box] !== '') {
+      $('#box' + box).off()
     }
   }
   if (playerMoves.every(valueExists)) {
@@ -171,6 +171,7 @@ const playBox = function () {
   preventDouble()
   console.log(playerMoves)
 }
+
 const gameDraw = function () {
   if (over === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)

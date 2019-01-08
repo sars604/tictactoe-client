@@ -4,7 +4,7 @@ const store = require('./store')
 const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
-  $('#game-board').show()
+  $('#game-board').hide()
   $('#games-index').show()
   $('#create-game').show()
   $('#change-password').show()
@@ -20,7 +20,7 @@ const onSignInSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed in as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
   store.user = responseData.user
-  $('#game-board').show()
+  $('#game-board').hide()
   $('#games-index').show()
   $('#create-game').show()
   $('#change-password').show()
@@ -79,6 +79,7 @@ const onGetGamesFailure = function () {
 const onCreateGameSuccess = function (response) {
   store.game = response.game
   $('#user-message').html('Game Created, Have Fun!')
+  $('#game-board').show()
 }
 
 const onCreateGameFailure = function () {
