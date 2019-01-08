@@ -17,3 +17,24 @@ body {
 h3 #user-message {
   font-style: italic;
 }
+
+nav {
+  border-bottom: 1px solid black;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-title {
+  text-align: center;
+}
+
+nav .right {
+display: flex;
+}
+
+h1 {
+  float: none;
+  text-align: center;
+  margin: 0 auto;
+}

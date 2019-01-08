@@ -78,6 +78,20 @@ const updateGame = (data) => {
   })
 }
 
+const gameOver = (id) => {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      'game': {
+        'over': true
+      }
+    }
+  })
+}
 module.exports = {
   signUp,
   signIn,
@@ -86,5 +100,6 @@ module.exports = {
   index,
   create,
   show,
-  updateGame
+  updateGame,
+  gameOver
 }

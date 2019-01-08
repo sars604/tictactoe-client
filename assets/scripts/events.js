@@ -3,6 +3,18 @@ const getFormFields = require('../../lib/get-form-fields.js')
 const ui = require('./ui')
 const store = require('./store')
 
+// array representing the moves in the game
+let playerMoves = ['', '', '', '', '', '', '', '', '']
+
+// variable that represents the last move made by either x or o
+let lastMove = null
+
+// players
+const player1 = 'X'
+const player2 = 'O'
+let currentMove = null
+let over = false
+
 // User sign up
 const onSignUp = (event) => {
   event.preventDefault()
@@ -58,6 +70,11 @@ const onGetGames = function () {
 // Create a Game
 const onCreateGame = function (event) {
   event.preventDefault()
+  $('.box').html('')
+  playerMoves = ['', '', '', '', '', '', '', '', '']
+  lastMove = null
+  over = false
+  currentMove = null
   // const data = getFormFields(event.target)
   api.create()
   // when API call is successful
@@ -96,18 +113,6 @@ const onUpdateGame = (box, currentMove, over) => {
     .catch(ui.onUpdateGameFailure)
 }
 
-// array representing the moves in the game
-const playerMoves = ['', '', '', '', '', '', '', '', '']
-
-// variable that represents the last move made by either x or o
-let lastMove = null
-
-// players
-const player1 = 'X'
-const player2 = 'O'
-let currentMove = null
-let over = false
-
 // game winning logic for X
 const xWins = function () {
   if ((playerMoves[0] === 'X' && playerMoves[1] === 'X' && playerMoves[2] === 'X') ||
@@ -120,7 +125,7 @@ const xWins = function () {
 (playerMoves[6] === 'X' && playerMoves[7] === 'X' && playerMoves[8] === 'X')) {
     $('#game-board .row .box').off()
     $('#user-message').text(`Game Over, X Wins!`)
-    over = true
+    api.gameOver(store.game.id)
   }
 }
 
@@ -136,7 +141,7 @@ const oWins = function () {
 (playerMoves[6] === 'O' && playerMoves[7] === 'O' && playerMoves[8] === 'O')) {
     $('#game-board .row .box').off()
     $('#user-message').text(`Game Over, O Wins!`)
-    over = true
+    api.gameOver(store.game.id)
   }
 }
 
@@ -162,7 +167,6 @@ const playBox = function () {
   oWins()
   const preventDouble = function (event) {
     if (playerMoves[box] !== '') {
-      $('#box' + box).off()
     }
   }
   if (playerMoves.every(valueExists)) {
@@ -175,7 +179,7 @@ const playBox = function () {
 const gameDraw = function () {
   if (over === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)
-    return over === true
+    api.gameOver(store.game.id)
   }
 }
 

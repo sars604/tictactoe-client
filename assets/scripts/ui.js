@@ -59,17 +59,9 @@ const onChangePasswordFailure = () => {
 }
 
 const onGetGamesSuccess = function (response) {
-  const games = response.games
-  // clear content to make room for book list
-  $('#user-message').html('Here are all your games')
-  games.forEach(function (games) {
-    const gamesHTML = (`
-      <h4>${games.id}</h4>
-      <p>${games.cells}</p>
-      <p>${games.over}</p>
-      `)
-    $('#user-message').append(gamesHTML)
-  })
+  const gameNum = response.games.length
+  $('#user-message').text(`You have played ${gameNum} games!`)
+  console.log(gameNum)
 }
 
 const onGetGamesFailure = function () {
