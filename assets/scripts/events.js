@@ -89,7 +89,7 @@ const onGetGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
   const id = data.game.id
-  console.log(data.game.id)
+  // console.log(data.game.id)
   // make API call for index of books
   api.show(id)
   // when API call is successful
@@ -129,7 +129,6 @@ const xWins = function () {
     $('#user-message').text(`Game Over, X Wins!`)
     api.gameOver(store.game.id)
     gameWinner = true
-
   }
 }
 
@@ -180,7 +179,7 @@ const playBox = function () {
       gameDraw()
     }
     preventDouble()
-    console.log(playerMoves)
+    // console.log(playerMoves)
   }
 }
 const gameDraw = function () {

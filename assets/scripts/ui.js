@@ -61,7 +61,7 @@ const onChangePasswordFailure = () => {
 const onGetGamesSuccess = function (response) {
   const gameNum = response.games.length
   $('#user-message').text(`You have played ${gameNum} games!`)
-  console.log(gameNum)
+  // console.log(gameNum)
 }
 
 const onGetGamesFailure = function () {
