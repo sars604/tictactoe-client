@@ -75,6 +75,7 @@ const onCreateGame = function (event) {
   lastMove = null
   over = false
   currentMove = null
+  gameWinner = false
   // const data = getFormFields(event.target)
   api.create()
   // when API call is successful
@@ -102,7 +103,7 @@ const onUpdateGame = (box, currentMove, over) => {
   {
     'game': {
       'cell': {
-        'index': box,
+        'index': box[3],
         'value': currentMove
       },
       'over': over
@@ -112,6 +113,8 @@ const onUpdateGame = (box, currentMove, over) => {
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
+
+let gameWinner = false
 
 // game winning logic for X
 const xWins = function () {
@@ -123,9 +126,10 @@ const xWins = function () {
 (playerMoves[2] === 'X' && playerMoves[5] === 'X' && playerMoves[8] === 'X') ||
 (playerMoves[3] === 'X' && playerMoves[4] === 'X' && playerMoves[5] === 'X') ||
 (playerMoves[6] === 'X' && playerMoves[7] === 'X' && playerMoves[8] === 'X')) {
-    $('#game-board .row .box').off()
     $('#user-message').text(`Game Over, X Wins!`)
     api.gameOver(store.game.id)
+    gameWinner = true
+
   }
 }
 
@@ -139,7 +143,7 @@ const oWins = function () {
 (playerMoves[2] === 'O' && playerMoves[5] === 'O' && playerMoves[8] === 'O') ||
 (playerMoves[3] === 'O' && playerMoves[4] === 'O' && playerMoves[5] === 'O') ||
 (playerMoves[6] === 'O' && playerMoves[7] === 'O' && playerMoves[8] === 'O')) {
-    $('#game-board .row .box').off()
+    gameWinner = true
     $('#user-message').text(`Game Over, O Wins!`)
     api.gameOver(store.game.id)
   }
@@ -147,26 +151,27 @@ const oWins = function () {
 
 // printing either X or O on click
 const playBox = function () {
-  const box = event.target.id[3]
-  if ($(box).html() === undefined) {
+  if (gameWinner === false) {
+  const boxNum = event.target.id[3]
+  if ($(event.target).text() === '') {
     if (lastMove === player1) {
       $(event.target).text(player2)
-      playerMoves[box] = player2
+      playerMoves[boxNum] = player2
       lastMove = player2
       currentMove = player2
-      onUpdateGame(box, currentMove, over)
+      onUpdateGame(boxNum, currentMove, over)
     } else {
       $(event.target).text(player1)
-      playerMoves[box] = player1
+      playerMoves[boxNum] = player1
       lastMove = player1
       currentMove = player1
-      onUpdateGame(box, currentMove, over)
+      onUpdateGame(boxNum, currentMove, over)
     }
   }
   xWins()
   oWins()
   const preventDouble = function (event) {
-    if (playerMoves[box] !== '') {
+    if (playerMoves[boxNum] !== '') {
     }
   }
   if (playerMoves.every(valueExists)) {
@@ -175,7 +180,7 @@ const playBox = function () {
   preventDouble()
   console.log(playerMoves)
 }
-
+}
 const gameDraw = function () {
   if (over === false) {
     $('#user-message').text(`Game Over, it's a Draw!`)

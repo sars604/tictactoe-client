@@ -5,10 +5,10 @@ const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
   $('#user-message').css('color', 'green')
   $('#game-board').hide()
-  $('#games-index').show()
-  $('#create-game').show()
-  $('#change-password').show()
-  $('#sign-in').hide()
+  $('#games-index').hide()
+  $('#create-game').hide()
+  $('#change-password').hide()
+  $('#sign-in').show()
   $('#sign-up').hide()
 }
 const onSignUpFailure = () => {
@@ -17,7 +17,7 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = (responseData) => {
-  $('#user-message').text(`Successfully signed in as ${responseData.user.email}!`)
+  $('#user-message').text(`Successfully signed in as ${responseData.user.email}! Now, Start a Game!`)
   $('#user-message').css('color', 'green')
   store.user = responseData.user
   $('#game-board').hide()

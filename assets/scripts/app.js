@@ -12,15 +12,7 @@ $('#change-password').hide()
 
 $(() => {
   // $('#game-board').on('click', events.playBox)
-  $('#box0').on('click', events.playBox)
-  $('#box1').on('click', events.playBox)
-  $('#box2').on('click', events.playBox)
-  $('#box3').on('click', events.playBox)
-  $('#box4').on('click', events.playBox)
-  $('#box5').on('click', events.playBox)
-  $('#box6').on('click', events.playBox)
-  $('#box7').on('click', events.playBox)
-  $('#box8').on('click', events.playBox)
+  $('.box').on('click', events.playBox)
   // user sign up
   $('#sign-up').on('submit', events.onSignUp)
   // user sign in
