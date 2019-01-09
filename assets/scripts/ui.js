@@ -9,6 +9,7 @@ const onSignUpSuccess = (responseData) => {
   $('#create-game').hide()
   $('#change-password').hide()
   $('#sign-in').show()
+  $('#sign-up').hide()
 }
 const onSignUpFailure = () => {
   $('#user-message').text('Error on signup, please try again!')
