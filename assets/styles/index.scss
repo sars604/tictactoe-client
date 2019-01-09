@@ -5,11 +5,13 @@ $grey: #999;
 $light-teal: #45818E;
 $dark-teal: #134F5C;
 $title-teal: #2c7e82;
+$board-blue: #0B5394;
 
 body {
   background-color: transparent;
   background-image: url('public/light-teal-bg.jpg');
   background-size: cover;
+  font-family: 'Muli', sans-serif;
 }
 
 .box {
@@ -26,37 +28,28 @@ body {
   &:hover {
     background-image: url('public/tic-tac-toe-bg.jpg');
     background-position: center center;
-    color: #0B5394;
+    color: $board-blue;
   }
 }
 
-input,
-button#create-game,
-button#games-index,
-button.btn.btn-primary,
-button#sign-out {
-    padding: 5px;
-    font-style: italic;
-    border-radius:8px;
+input {
+  border-radius: 8px;
+  font-style: italic;
+  padding: 5px 10px;
 }
 
-input.submit,
-button#create-game,
-button#games-index,
-button.btn.btn-primary,
-button#sign-out{
+.submit {
   background-color: $dark-teal;
-  color: $white;
   border-color: transparent;
+  border-radius: 8px;
+  color: $white;
+  font-style: italic;
+  padding: 5px 10px;
   vertical-align: middle;
-}
 
-input.submit:hover,
-button#create-game:hover,
-button#games-index:hover,
-button.btn.btn-primary:hover,
-button#sign-out:hover {
-  background-color: $light-teal;
+  &:hover {
+    background-color: $light-teal
+  }
 }
 
 button.btn.btn-primary,
@@ -72,7 +65,7 @@ form#sign-up, form#sign-in {
   border: 2px solid $title-teal;
   margin: 30px auto;
   padding: 30px;
-  width: 70%;
+  width: 75%;
 }
 
 h3 {
@@ -80,7 +73,6 @@ h3 {
 }
 
 h3#user-message {
-  font-style: italic;
   margin: 20px;
   text-align: center;
 }

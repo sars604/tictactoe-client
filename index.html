@@ -3,6 +3,7 @@
     <head>
       <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -13,12 +14,12 @@
     </head>
     <body>
 <nav>
-  <div class="left"><button id='games-index'>Game History</button>
-  <button id='create-game'>Play a Game!</button></div>
+  <div class="left"><button id='games-index' class="games-index submit">Game History</button>
+  <button id='create-game' class="create-game submit">Play a Game!</button></div>
     <h1 class="page-title">Tic Tac Toe</h1>
-  <div id="change-password" class="right"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordModalCenter">
+  <div id="change-password" class="right"><button type="button" class="btn btn-primary submit" data-toggle="modal" data-target="#passwordModalCenter">
     Change Password
-  </button><button id="sign-out" class="submit" type="button">Sign Out</button></div>
+  </button><button id="sign-out" class="submit sign-out" type="button">Sign Out</button></div>
 </nav>
 
       <div class="container">
