@@ -16,7 +16,7 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = (responseData) => {
-  $('#user-message').text(`Successfully signed in as ${responseData.user.email}! Now, Start a Game!`)
+  $('#user-message').text(`Successfully signed in as ${responseData.user.email}! Now, Play a Game!`)
   $('#user-message').css('color', '#69BF44')
   store.user = responseData.user
   $('#game-board, #sign-in, #sign-up').hide()

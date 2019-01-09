@@ -20,7 +20,10 @@ $(() => {
   // user sign Out
   $('#sign-out').on('click', events.onSignOut)
   // user change password
-  $('#passwordModalCenter').on('click', events.onChangePasswordReset)
+  // $('#passwordModalCenter').on('click', events.onChangePasswordReset)
+  $('#passwordModalCenter').on('hidden.bs.modal', function () {
+    $('#change-password-form').trigger('reset')
+  })
   $('#change-password-form').on('submit', events.onChangePassword)
   // get index of games
   $('#games-index').on('click', events.onGetGames)
