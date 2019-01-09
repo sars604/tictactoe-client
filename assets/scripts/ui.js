@@ -3,7 +3,7 @@ const store = require('./store')
 
 const onSignUpSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed up as ${responseData.user.email}!`)
-  $('#user-message').css('color', 'green')
+  $('#user-message').css('color', '#69BF44')
   $('#game-board').hide()
   $('#games-index').hide()
   $('#create-game').hide()
@@ -18,7 +18,7 @@ const onSignUpFailure = () => {
 
 const onSignInSuccess = (responseData) => {
   $('#user-message').text(`Successfully signed in as ${responseData.user.email}! Now, Start a Game!`)
-  $('#user-message').css('color', 'green')
+  $('#user-message').css('color', '#69BF44')
   store.user = responseData.user
   $('#game-board').hide()
   $('#games-index').show()
@@ -35,7 +35,7 @@ const onSignInFailure = () => {
 
 const onSignOutSuccess = () => {
   $('#user-message').text(`Successfully signed out!`)
-  $('#user-message').css('color', 'green')
+  $('#user-message').css('color', '#69BF44')
   store.user = null
   $('#game-board').hide()
   $('#games-index').hide()
@@ -52,9 +52,10 @@ const onSignOutFailure = () => {
 const onChangePasswordSuccess = () => {
   $('#passwordModalCenter').modal('toggle')
   $('#user-message').text(`Successfully changed password!`)
-  $('#user-message').css('color', 'green')
+  $('#user-message').css('color', '#69BF44')
 }
 const onChangePasswordFailure = () => {
+  $('#passwordModalCenter').modal('toggle')
   $('#user-message').text('Error on changing password, try again!')
   $('#user-message').css('color', 'red')
 }
@@ -67,16 +68,19 @@ const onGetGamesSuccess = function (response) {
 
 const onGetGamesFailure = function () {
   $('#user-message').html('Can not grab list of games, please try again')
+  $('#user-message').css('color', 'red')
 }
 
 const onCreateGameSuccess = function (response) {
   store.game = response.game
   $('#user-message').html('Game Created, Have Fun!')
+  $('#user-message').css('color', '#69BF44')
   $('#game-board').show()
 }
 
 const onCreateGameFailure = function () {
   $('#user-message').html('Request failed, please try again')
+  $('#user-message').css('color', 'red')
 }
 
 // const onGetGameSuccess = function () {

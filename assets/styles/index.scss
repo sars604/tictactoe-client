@@ -1,25 +1,86 @@
 @import '~bootstrap/scss/bootstrap';
-$black: #000;
 
 body {
+  background-color: transparent;
+  background-image: url('public/light-teal-bg.jpg');
+  background-size: cover;
 }
 
 .box {
   align-items: center;
-  border: 1px solid $black;
+  border: 3px solid white;
   display: flex;
-  height: 150px;
+  height: 230px;
   justify-content: center;
-  font-size: 40px;
-  color: #93C54B;
+  font-size: 80px;
+  color: white;
+  background-image: url('public/tic-tac-toe-bg.jpg');
+  background-position: center top;
 }
 
-h3 #user-message {
-  font-style: italic;
+.box:hover {
+  background-image: url('public/tic-tac-toe-bg.jpg');
+  background-position: center center;
+  color: #0B5394;
+}
+
+input,
+button#create-game,
+button#games-index,
+button.btn.btn-primary,
+button#sign-out {
+    padding: 5px;
+    font-style: italic;
+    border-radius:8px;
+}
+
+input.submit,
+button#create-game,
+button#games-index,
+button.btn.btn-primary,
+button#sign-out{
+  background-color: #134F5C;
+  color: white;
+  border-color: transparent;
+  vertical-align: middle;
+}
+
+input.submit:hover,
+button#create-game:hover,
+button#games-index:hover,
+button.btn.btn-primary:hover,
+button#sign-out:hover {
+  background-color: #45818E;
+}
+
+button.btn.btn-primary,
+button#games-index {
+    margin-right: 8px;
+}
+
+form#sign-up {
+    margin-bottom: 30px;
+}
+
+form#sign-up, form#sign-in {
+  border: 2px solid #999999;
+  padding: 30px;
+  width: 70%;
+  margin: 30px auto;
+}
+
+h3 {
+  color: #999999;
+}
+
+h3#user-message {
+    margin: 20px;
+    font-style: italic;
+    text-align: center;
 }
 
 nav {
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid #CCCCCC;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -29,12 +90,9 @@ nav {
   text-align: center;
 }
 
-nav .right {
-display: flex;
-}
-
 h1 {
   float: none;
   text-align: center;
   margin: 0 auto;
+  color: #999999;
 }
