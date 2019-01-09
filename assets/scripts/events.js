@@ -50,20 +50,20 @@ const onSignOut = (event) => {
 const onChangePassword = (event) => {
   event.preventDefault()
   const formData = getFormFields(event.target)
-  $('#change-password-form').trigger('reset')
   api.changePassword(formData)
     .then(ui.onChangePasswordSuccess)
     .catch(ui.onChangePasswordFailure)
+  $('#change-password-form').trigger('reset')
 }
 
-const onChangePasswordReset = (event) => {
-  // event.preventDefault()
-  // const formData = getFormFields(event.target)
-  $('#change-password-form').trigger('reset')
-  // api.changePassword(formData)
-  //   .then(ui.onChangePasswordSuccess)
-  //   .catch(ui.onChangePasswordFailure)
-}
+// const onChangePasswordReset = (event) => {
+//   // event.preventDefault()
+//   // const formData = getFormFields(event.target)
+//   $('#change-password-form').trigger('reset')
+//   // api.changePassword(formData)
+//   //   .then(ui.onChangePasswordSuccess)
+//   //   .catch(ui.onChangePasswordFailure)
+// }
 
 // Get Index of Games
 const onGetGames = function () {
@@ -210,7 +210,7 @@ module.exports = {
   onSignIn,
   onSignOut,
   onChangePassword,
-  onChangePasswordReset,
+  // onChangePasswordReset,
   onGetGames,
   onCreateGame,
   onGetGame,
